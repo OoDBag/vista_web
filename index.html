@@ -299,12 +299,25 @@
   <div class="container is-max-desktop">
     
     <!-- Hero Title Section -->
+<!-- Section: SOTA Achievement -->
 <div class="column has-text-centered">
   <h2 class="title is-3 has-text-weight-bold">🏆 VisTA achieves SOTA on ChartQA and Geometry3K</h2>
   <p class="subtitle is-5">State-of-the-art accuracy across both structured chart reasoning and geometric visual QA tasks</p>
 </div>
 
-<!-- Agent Capability Highlight -->
+<!-- SOTA Carousel -->
+<div style="position: relative; width: 75%; margin: 2rem auto; text-align: center;">
+  <div id="sota-carousel" style="position: relative;">
+    <img id="sota-img" src="./static/images/ChartQA.png"
+         alt="ChartQA"
+         style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px; transition: opacity 0.4s ease;" />
+    <p id="sota-label" class="has-text-weight-semibold mt-2">ChartQA</p>
+  </div>
+  <button onclick="changeSotaImage(-1)" style="position: absolute; top: 50%; left: -2rem; transform: translateY(-50%); background: none; border: none; font-size: 2rem; cursor: pointer;">&#8592;</button>
+  <button onclick="changeSotaImage(1)" style="position: absolute; top: 50%; right: -2rem; transform: translateY(-50%); background: none; border: none; font-size: 2rem; cursor: pointer;">&#8594;</button>
+</div>
+
+<!-- Section: Agent Reasoning -->
 <div class="column has-text-centered">
   <h2 class="title is-4 has-text-weight-semibold" style="color: #3273dc;">🤖 Agent uses the right tools during inference</h2>
   <p class="subtitle is-6" style="max-width: 600px; margin: 0 auto; color: #4a4a4a;">
@@ -312,53 +325,63 @@
   </p>
 </div>
 
-<!-- Unified Carousel -->
+<!-- Agent Tools Carousel -->
 <div style="position: relative; width: 75%; margin: 2rem auto; text-align: center;">
-
-  <!-- Image Container -->
-  <div id="carousel-images" style="position: relative;">
-    <img id="carousel-img" src="./static/images/chart_viz.png" 
-         alt="ChartQA" 
+  <div id="agent-carousel" style="position: relative;">
+    <img id="agent-img" src="./static/images/chart_viz.png"
+         alt="ChartQA"
          style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px; transition: opacity 0.4s ease;" />
-    <p id="carousel-label" class="has-text-weight-semibold mt-2">ChartQA</p>
+    <p id="agent-label" class="has-text-weight-semibold mt-2">ChartQA</p>
   </div>
-
-  <!-- Navigation Arrows -->
-  <button onclick="changeImage(-1)" style="position: absolute; top: 50%; left: -2rem; transform: translateY(-50%); background: none; border: none; font-size: 2rem; cursor: pointer;">&#8592;</button>
-  <button onclick="changeImage(1)" style="position: absolute; top: 50%; right: -2rem; transform: translateY(-50%); background: none; border: none; font-size: 2rem; cursor: pointer;">&#8594;</button>
+  <button onclick="changeAgentImage(-1)" style="position: absolute; top: 50%; left: -2rem; transform: translateY(-50%); background: none; border: none; font-size: 2rem; cursor: pointer;">&#8592;</button>
+  <button onclick="changeAgentImage(1)" style="position: absolute; top: 50%; right: -2rem; transform: translateY(-50%); background: none; border: none; font-size: 2rem; cursor: pointer;">&#8594;</button>
 </div>
 
-<!-- Carousel Script -->
+<!-- Scripts -->
 <script>
-  const images = [
-    {
-      src: "./static/images/chart_viz.png",
-      alt: "ChartQA",
-      label: "ChartQA"
-    },
-    {
-      src: "./static/images/geom_viz.png",
-      alt: "Geometry3K",
-      label: "Geometry3K"
-    }
+  // SOTA Carousel Logic
+  const sotaImages = [
+    { src: "./static/images/ChartQA.png", alt: "ChartQA", label: "ChartQA" },
+    { src: "./static/images/geom3k.png", alt: "Geometry3K", label: "Geometry3K" }
   ];
+  let sotaIndex = 0;
 
-  let currentIndex = 0;
-
-  function changeImage(direction) {
-    const img = document.getElementById("carousel-img");
-    const label = document.getElementById("carousel-label");
+  function changeSotaImage(direction) {
+    const img = document.getElementById("sota-img");
+    const label = document.getElementById("sota-label");
 
     img.style.opacity = 0;
     setTimeout(() => {
-      currentIndex = (currentIndex + direction + images.length) % images.length;
-      img.src = images[currentIndex].src;
-      img.alt = images[currentIndex].alt;
-      label.textContent = images[currentIndex].label;
+      sotaIndex = (sotaIndex + direction + sotaImages.length) % sotaImages.length;
+      img.src = sotaImages[sotaIndex].src;
+      img.alt = sotaImages[sotaIndex].alt;
+      label.textContent = sotaImages[sotaIndex].label;
+      img.style.opacity = 1;
+    }, 200);
+  }
+
+  // Agent Carousel Logic
+  const agentImages = [
+    { src: "./static/images/chart_viz.png", alt: "ChartQA", label: "ChartQA" },
+    { src: "./static/images/geom_viz.png", alt: "Geometry3k", label: "Geometry3k" }
+  ];
+  let agentIndex = 0;
+
+  function changeAgentImage(direction) {
+    const img = document.getElementById("agent-img");
+    const label = document.getElementById("agent-label");
+
+    img.style.opacity = 0;
+    setTimeout(() => {
+      agentIndex = (agentIndex + direction + agentImages.length) % agentImages.length;
+      img.src = agentImages[agentIndex].src;
+      img.alt = agentImages[agentIndex].alt;
+      label.textContent = agentImages[agentIndex].label;
       img.style.opacity = 1;
     }, 200);
   }
 </script>
+
 
 
 
