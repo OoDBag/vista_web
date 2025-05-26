@@ -297,7 +297,54 @@
 
 <section class="section">
   <div class="container is-max-desktop">
+    
+    <div class="column has-text-centered">
+  <h2 class="title is-3 has-text-weight-bold">🏆 VisTA achieves SOTA on ChartQA and Geometry3K</h2>
+  <p class="subtitle is-5">State-of-the-art accuracy across both structured chart reasoning and geometric visual QA tasks</p>
+</div>
 
+<!-- Carousel Wrapper -->
+<div style="position: relative; width: 75%; margin: auto; text-align: center;">
+  
+  <!-- Image Container -->
+  <div id="carousel-images">
+    <img src="./static/images/chart_viz.png" style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;" alt="ChartQA" />
+    <p class="has-text-weight-semibold mt-2">ChartQA</p>
+  </div>
+
+  <!-- Left Arrow -->
+  <button onclick="changeImage(-1)" style="position: absolute; top: 50%; left: -2rem; transform: translateY(-50%); background: none; border: none; font-size: 2rem; cursor: pointer;">&#8592;</button>
+
+  <!-- Right Arrow -->
+  <button onclick="changeImage(1)" style="position: absolute; top: 50%; right: -2rem; transform: translateY(-50%); background: none; border: none; font-size: 2rem; cursor: pointer;">&#8594;</button>
+</div>
+
+<script>
+  const images = [
+    {
+      src: "./static/images/ChartQA.png",
+      alt: "ChartQA",
+      label: "ChartQA"
+    },
+    {
+      src: "./static/images/geom3k.png",
+      alt: "Geometry3K",
+      label: "Geometry3K"
+    }
+  ];
+
+  let currentIndex = 0;
+
+  function changeImage(direction) {
+    currentIndex = (currentIndex + direction + images.length) % images.length;
+    const imageContainer = document.getElementById("carousel-images");
+    imageContainer.innerHTML = `
+      <img src="${images[currentIndex].src}" style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;" alt="${images[currentIndex].alt}" />
+      <p class="has-text-weight-semibold mt-2">${images[currentIndex].label}</p>
+    `;
+  }
+</script>
+    
    <div class="column has-text-centered">
   <h2 class="title is-4">Agent uses appropriate tools during inference</h2>
 </div>
