@@ -298,73 +298,37 @@
 <section class="section">
   <div class="container is-max-desktop">
     
-    <div class="column has-text-centered">
+    <!-- Hero Title Section -->
+<div class="column has-text-centered">
   <h2 class="title is-3 has-text-weight-bold">🏆 VisTA achieves SOTA on ChartQA and Geometry3K</h2>
   <p class="subtitle is-5">State-of-the-art accuracy across both structured chart reasoning and geometric visual QA tasks</p>
 </div>
 
-<!-- Carousel Wrapper -->
-<div style="position: relative; width: 75%; margin: auto; text-align: center;">
-  
+<!-- Agent Capability Highlight -->
+<div class="column has-text-centered">
+  <h2 class="title is-4 has-text-weight-semibold" style="color: #3273dc;">🤖 Agent uses the right tools during inference</h2>
+  <p class="subtitle is-6" style="max-width: 600px; margin: 0 auto; color: #4a4a4a;">
+    Our agent dynamically selects specialized reasoning modules for visual tasks — ensuring optimal performance on both geometric diagrams and structured charts.
+  </p>
+</div>
+
+<!-- Unified Carousel -->
+<div style="position: relative; width: 75%; margin: 2rem auto; text-align: center;">
+
   <!-- Image Container -->
-  <div id="carousel-images">
-    <img src="./static/images/chart_viz.png" style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;" alt="ChartQA" />
-    <p class="has-text-weight-semibold mt-2">ChartQA</p>
+  <div id="carousel-images" style="position: relative;">
+    <img id="carousel-img" src="./static/images/chart_viz.png" 
+         alt="ChartQA" 
+         style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px; transition: opacity 0.4s ease;" />
+    <p id="carousel-label" class="has-text-weight-semibold mt-2">ChartQA</p>
   </div>
 
-  <!-- Left Arrow -->
+  <!-- Navigation Arrows -->
   <button onclick="changeImage(-1)" style="position: absolute; top: 50%; left: -2rem; transform: translateY(-50%); background: none; border: none; font-size: 2rem; cursor: pointer;">&#8592;</button>
-
-  <!-- Right Arrow -->
   <button onclick="changeImage(1)" style="position: absolute; top: 50%; right: -2rem; transform: translateY(-50%); background: none; border: none; font-size: 2rem; cursor: pointer;">&#8594;</button>
 </div>
 
-<script>
-  const images = [
-    {
-      src: "./static/images/ChartQA.png",
-      alt: "ChartQA",
-      label: "ChartQA"
-    },
-    {
-      src: "./static/images/geom3k.png",
-      alt: "Geometry3K",
-      label: "Geometry3K"
-    }
-  ];
-
-  let currentIndex = 0;
-
-  function changeImage(direction) {
-    currentIndex = (currentIndex + direction + images.length) % images.length;
-    const imageContainer = document.getElementById("carousel-images");
-    imageContainer.innerHTML = `
-      <img src="${images[currentIndex].src}" style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;" alt="${images[currentIndex].alt}" />
-      <p class="has-text-weight-semibold mt-2">${images[currentIndex].label}</p>
-    `;
-  }
-</script>
-    
-   <div class="column has-text-centered">
-  <h2 class="title is-4">Agent uses appropriate tools during inference</h2>
-</div>
-
-<!-- Carousel Wrapper -->
-<div style="position: relative; width: 75%; margin: auto; text-align: center;">
-  
-  <!-- Image Container -->
-  <div id="carousel-images">
-    <img src="./static/images/chart_viz.png" style="width: 100%; height: auto;" alt="ChartQA" />
-    <p class="is-bold">ChartQA</p>
-  </div>
-
-  <!-- Left Arrow -->
-  <button onclick="changeImage(-1)" style="position: absolute; top: 50%; left: -2rem; transform: translateY(-50%); background: none; border: none; font-size: 2rem; cursor: pointer;">&#8592;</button>
-
-  <!-- Right Arrow -->
-  <button onclick="changeImage(1)" style="position: absolute; top: 50%; right: -2rem; transform: translateY(-50%); background: none; border: none; font-size: 2rem; cursor: pointer;">&#8594;</button>
-</div>
-
+<!-- Carousel Script -->
 <script>
   const images = [
     {
@@ -374,22 +338,28 @@
     },
     {
       src: "./static/images/geom_viz.png",
-      alt: "Geometry3k",
-      label: "Geometry3k"
+      alt: "Geometry3K",
+      label: "Geometry3K"
     }
   ];
 
   let currentIndex = 0;
 
   function changeImage(direction) {
-    currentIndex = (currentIndex + direction + images.length) % images.length;
-    const imageContainer = document.getElementById("carousel-images");
-    imageContainer.innerHTML = `
-      <img src="${images[currentIndex].src}" style="width: 100%; height: auto;" alt="${images[currentIndex].alt}" />
-      <p class="is-bold">${images[currentIndex].label}</p>
-    `;
+    const img = document.getElementById("carousel-img");
+    const label = document.getElementById("carousel-label");
+
+    img.style.opacity = 0;
+    setTimeout(() => {
+      currentIndex = (currentIndex + direction + images.length) % images.length;
+      img.src = images[currentIndex].src;
+      img.alt = images[currentIndex].alt;
+      label.textContent = images[currentIndex].label;
+      img.style.opacity = 1;
+    }, 200);
   }
 </script>
+
 
 
       
